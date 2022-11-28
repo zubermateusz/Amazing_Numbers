@@ -33,57 +33,96 @@ public class Main {
             System.out.println();
 
             System.out.print("Enter a request: ");
+
             String line = scanner.nextLine();
-            long[] numbers = Arrays.stream(line.split(" ")).mapToLong(Long::parseLong).toArray();
 
-            long number = scanner.nextLong();
-            System.out.println(); // new line after enter the number
-            if (number == 0) {
-                System.out.println("Goodbye!");
-                System.exit(0);
-            } // exit
+            if (line.length() > 0) { // no argument in line from user
+                long[] numbers = Arrays.stream(line.split(" ")).mapToLong(Long::parseLong).toArray();
 
-            if (!isNaturalor0(number)) {
-                System.out.println("The first parameter should be a natural number or zero.");
-                System.out.println();
-                // STAGE2/8System.out.println("This number is not natural!");
-                // STAGE2/8System.exit(0);
-            } //check number is not natural
-            else {
 
-                System.out.println("Properties of " + number);
+                    long number = numbers[0];// STAGE 3/8 scanner.nextLong();
+                    System.out.println(); // new line after enter the number
+                    if (number == 0) {
+                        System.out.println("Goodbye!");
+                        System.exit(0);
+                    } // exit
 
-                if (isEven(number)) { // check is even
-                    System.out.println("        even: true");
-                } else {
-                    System.out.println("        even: false");
+                    if (!isNaturalor0(number)) {
+                        System.out.println("The first parameter should be a natural number or zero.");
+                        System.out.println();
+                        // STAGE2/8System.out.println("This number is not natural!");
+                        // STAGE2/8System.exit(0);
+                    } //check number is not natural and restart menu
+                    else {
+                        if (numbers.length == 1) { //only 1 parameter
+                            System.out.println("Properties of " + number);
+
+                            if (isEven(number)) { // check is even
+                                System.out.println("        even: true");
+                            } else {
+                                System.out.println("        even: false");
+                            }
+                            if (!isEven(number)) { // check is odd
+                                System.out.println("         odd: true");
+                            } else {
+                                System.out.println("         odd: false");
+                            }
+
+                            if (isBuzz(number)) { // check isBuzz Number
+                                System.out.println("        buzz: true");
+                            } else {
+                                System.out.println("        buzz: false");
+                            }
+
+                            if (isDuck(number)) { // check isDuck number
+                                System.out.println("        duck: true");
+                            } else {
+                                System.out.println("        duck: false");
+                            }
+
+                            if (isPalindromic(number)) { // check is Plindromic
+                                System.out.println(" palindromic: true");
+                            } else {
+                                System.out.println(" palindromic: false");
+                            }
+                            System.out.println(); // new line at the end
+                        }
+                        if (numbers.length == 2) { // 2 parameters
+                            for (int i = 0; i < numbers[1]; i++) {
+                                System.out.print("             " + numbers[0] + " is");
+                                if (isBuzz(number)) {
+                                    System.out.print(" buzz,");
+                                }
+                                if (isDuck(number)) {
+                                    System.out.print(" duck,");
+                                }
+                                if (isGapful(number)) {
+                                    System.out.print(" gapful,");
+                                }
+                                if (isPalindromic(number)) {
+                                    System.out.print(" palindromic,");
+                                }
+                                if (isEven(number)) {
+                                    System.out.println(" even");
+                                }
+                                if (!isEven(number)) {
+                                    System.out.println(" odd");
+                                }
+                            }
+                        }
+                    }
+
+
+
+
+
+
                 }
-                if (!isEven(number)) { // check is odd
-                    System.out.println("         odd: true");
-                } else {
-                    System.out.println("         odd: false");
-                }
 
-                if (isBuzz(number)) { // check isBuzz Number
-                    System.out.println("        buzz: true");
-                } else {
-                    System.out.println("        buzz: false");
-                }
-
-                if (isDuck(number)) { // check isDuck number
-                    System.out.println("        duck: true");
-                } else {
-                    System.out.println("        duck: false");
-                }
-
-                if (isPalindromic(number)) { // check ispPlindromic
-                    System.out.println(" palindromic: true");
-                } else {
-                    System.out.println(" palindromic: false");
-                }
-                System.out.println(); // new line at the end
-            }
+            System.out.println();
         }
+
+
 /*      // number is Buzz number if last digit == 7 or number % 7 == 0
         if (number % 7 == 0 || number % 10 == 7) {
             if (number % 7 == 0 && number % 10 == 7) {
@@ -109,6 +148,10 @@ public class Main {
         }
 
  */ //STAGE 1/8
+    }
+
+    private static boolean isGapful(long number) {
+
     }
 
     private static boolean isPalindromic(long number) {
