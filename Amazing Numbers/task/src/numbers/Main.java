@@ -19,19 +19,20 @@ public class Main {
 
         // System.out.println("Enter a natural number:"); STAGE 2/8
         Scanner scanner = new Scanner(System.in);
-
+        boolean flagShowMenu = true;
 
         for(;;) {
-
-            System.out.println("Supported requests:\n" +
-                    "- enter a natural number to know its properties;\n" +
-                    "- enter two natural numbers to obtain the properties of the list:\n" +
-                    "  * the first parameter represents a starting number;\n" +
-                    "  * the second parameter shows how many consecutive numbers are to be printed;\n" +
-                    "- separate the parameters with one space;\n" +
-                    "- enter 0 to exit.");
-            System.out.println();
-
+            if (flagShowMenu) {
+                System.out.println("Supported requests:\n" +
+                        "- enter a natural number to know its properties;\n" +
+                        "- enter two natural numbers to obtain the properties of the list:\n" +
+                        "  * the first parameter represents a starting number;\n" +
+                        "  * the second parameter shows how many consecutive numbers are to be printed;\n" +
+                        "- separate the parameters with one space;\n" +
+                        "- enter 0 to exit.");
+                System.out.println();
+                flagShowMenu = false;
+            }
             System.out.print("Enter a request: ");
 
             String line = scanner.nextLine();
@@ -68,10 +69,10 @@ public class Main {
                                 System.out.println("         odd: false");
                             }
 
-                            if (isGapful(number)) { // check is odd
-                                System.out.println("         gapful: true");
+                            if (isGapful(number)) { // check is gapful
+                                System.out.println("      gapful: true");
                             } else {
-                                System.out.println("         gapful: false");
+                                System.out.println("      gapful: false");
                             }
 
                             if (isBuzz(number)) { // check isBuzz Number
@@ -127,7 +128,10 @@ public class Main {
 
 
 
-                }
+                } else {
+                flagShowMenu = true;
+            }
+
             System.out.println();
         }
 
@@ -162,8 +166,11 @@ public class Main {
     private static boolean isGapful(long number) {
         boolean flag = false;
         StringBuilder numberText = new StringBuilder(number + "");
-        if(number % (Long.parseLong(numberText.charAt(0) + numberText.charAt(numberText.length()-1) + "")) == 0)
-            flag = true;
+        if (numberText.length() >= 3) {
+            if (number % (Long.parseLong(numberText.charAt(0) +"") * 10  + Long.parseLong(numberText.charAt(numberText.length() - 1) +"")) == 0) {
+                flag = true;
+            }
+        }
         return flag;
     }
 
