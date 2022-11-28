@@ -68,6 +68,12 @@ public class Main {
                                 System.out.println("         odd: false");
                             }
 
+                            if (isGapful(number)) { // check is odd
+                                System.out.println("         gapful: true");
+                            } else {
+                                System.out.println("         gapful: false");
+                            }
+
                             if (isBuzz(number)) { // check isBuzz Number
                                 System.out.println("        buzz: true");
                             } else {
@@ -87,26 +93,31 @@ public class Main {
                             }
                             System.out.println(); // new line at the end
                         }
-                        if (numbers.length == 2) { // 2 parameters
-                            for (int i = 0; i < numbers[1]; i++) {
-                                System.out.print("             " + numbers[0] + " is");
-                                if (isBuzz(number)) {
-                                    System.out.print(" buzz,");
-                                }
-                                if (isDuck(number)) {
-                                    System.out.print(" duck,");
-                                }
-                                if (isGapful(number)) {
-                                    System.out.print(" gapful,");
-                                }
-                                if (isPalindromic(number)) {
-                                    System.out.print(" palindromic,");
-                                }
-                                if (isEven(number)) {
-                                    System.out.println(" even");
-                                }
-                                if (!isEven(number)) {
-                                    System.out.println(" odd");
+                        if (numbers.length == 2) {// 2 parameters
+                            if (!isNaturalor0(numbers[1])) {
+                                System.out.println("The second parameter should be a natural number.");
+                                System.out.println();
+                            } else {
+                                for (int i = 0; i < numbers[1]; i++) {
+                                    System.out.print("             " + (numbers[0] + i) + " is");
+                                    if (isBuzz(number + i)) {
+                                        System.out.print(" buzz,");
+                                    }
+                                    if (isDuck(number + i)) {
+                                        System.out.print(" duck,");
+                                    }
+                                    if (isGapful(number + i)) {
+                                        System.out.print(" gapful,");
+                                    }
+                                    if (isPalindromic(number + i)) {
+                                        System.out.print(" palindromic,");
+                                    }
+                                    if (isEven(number + i)) {
+                                        System.out.println(" even");
+                                    }
+                                    if (!isEven(number + i)) {
+                                        System.out.println(" odd");
+                                    }
                                 }
                             }
                         }
@@ -116,9 +127,7 @@ public class Main {
 
 
 
-
                 }
-
             System.out.println();
         }
 
@@ -151,7 +160,11 @@ public class Main {
     }
 
     private static boolean isGapful(long number) {
-
+        boolean flag = false;
+        StringBuilder numberText = new StringBuilder(number + "");
+        if(number % (Long.parseLong(numberText.charAt(0) + numberText.charAt(numberText.length()-1) + "")) == 0)
+            flag = true;
+        return flag;
     }
 
     private static boolean isPalindromic(long number) {
@@ -197,6 +210,6 @@ public class Main {
     } // check is odd or even
 
     private static boolean isNaturalor0(long number) {
-        return number >= 0;
+        return number > 0;
     } // check is Natural
 }
