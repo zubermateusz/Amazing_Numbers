@@ -1,5 +1,6 @@
 package numbers;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -12,14 +13,7 @@ public class Main {
                 "- enter a natural number to know its properties;\n" +
                 "- enter 0 to exit.");
 */ //STAGE 3/8
-        System.out.println("Supported requests:\n" +
-                "- enter a natural number to know its properties;\n" +
-                "- enter two natural numbers to obtain the properties of the list:\n" +
-                "  * the first parameter represents a starting number;\n" +
-                "  * the second parameter shows how many consecutive numbers are to be printed;\n" +
-                "- separate the parameters with one space;\n" +
-                "- enter 0 to exit.");
-        System.out.println();
+
 
 
 
@@ -28,7 +22,20 @@ public class Main {
 
 
         for(;;) {
+
+            System.out.println("Supported requests:\n" +
+                    "- enter a natural number to know its properties;\n" +
+                    "- enter two natural numbers to obtain the properties of the list:\n" +
+                    "  * the first parameter represents a starting number;\n" +
+                    "  * the second parameter shows how many consecutive numbers are to be printed;\n" +
+                    "- separate the parameters with one space;\n" +
+                    "- enter 0 to exit.");
+            System.out.println();
+
             System.out.print("Enter a request: ");
+            String line = scanner.nextLine();
+            long[] numbers = Arrays.stream(line.split(" ")).mapToLong(Long::parseLong).toArray();
+
             long number = scanner.nextLong();
             System.out.println(); // new line after enter the number
             if (number == 0) {
