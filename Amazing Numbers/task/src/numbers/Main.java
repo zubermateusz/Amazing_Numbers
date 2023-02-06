@@ -23,13 +23,14 @@ public class Main {
 
         for(;;) {
             if (flagShowMenu) {
-                System.out.println("Supported requests:\n" +
-                        "- enter a natural number to know its properties;\n" +
-                        "- enter two natural numbers to obtain the properties of the list:\n" +
-                        "  * the first parameter represents a starting number;\n" +
-                        "  * the second parameter shows how many consecutive numbers are to be printed;\n" +
-                        "- separate the parameters with one space;\n" +
-                        "- enter 0 to exit.");
+                System.out.println("""
+                        Supported requests:
+                        - enter a natural number to know its properties;
+                        - enter two natural numbers to obtain the properties of the list:
+                          * the first parameter represents a starting number;
+                          * the second parameter shows how many consecutive numbers are to be printed;
+                        - separate the parameters with one space;
+                        - enter 0 to exit.""");
                 System.out.println();
                 flagShowMenu = false;
             }
@@ -48,7 +49,7 @@ public class Main {
                         System.exit(0);
                     } // exit
 
-                    if (!isNaturalor0(number)) {
+                    if (Functions.notNatural0(number)) {
                         System.out.println("The first parameter should be a natural number or zero.");
                         System.out.println();
                         // STAGE2/8System.out.println("This number is not natural!");
@@ -58,36 +59,42 @@ public class Main {
                         if (numbers.length == 1) { //only 1 parameter
                             System.out.println("Properties of " + number);
 
-                            if (isEven(number)) { // check is even
+                            if (Functions.isEven(number)) { // check is even
                                 System.out.println("        even: true");
                             } else {
                                 System.out.println("        even: false");
                             }
-                            if (!isEven(number)) { // check is odd
+                            if (!Functions.isEven(number)) { // check is odd
                                 System.out.println("         odd: true");
                             } else {
                                 System.out.println("         odd: false");
                             }
 
-                            if (isGapful(number)) { // check is gapful
+                            if (Functions.isGapful(number)) { // check is gapful
                                 System.out.println("      gapful: true");
                             } else {
                                 System.out.println("      gapful: false");
                             }
 
-                            if (isBuzz(number)) { // check isBuzz Number
+                            if (Functions.isSpy(number)) { // check is gapful
+                                System.out.println("         spy: true");
+                            } else {
+                                System.out.println("         spy: false");
+                            }
+
+                            if (Functions.isBuzz(number)) { // check isBuzz Number
                                 System.out.println("        buzz: true");
                             } else {
                                 System.out.println("        buzz: false");
                             }
 
-                            if (isDuck(number)) { // check isDuck number
+                            if (Functions.isDuck(number)) { // check isDuck number
                                 System.out.println("        duck: true");
                             } else {
                                 System.out.println("        duck: false");
                             }
 
-                            if (isPalindromic(number)) { // check is Plindromic
+                            if (Functions.isPalindromic(number)) { // check is Plindromic
                                 System.out.println(" palindromic: true");
                             } else {
                                 System.out.println(" palindromic: false");
@@ -95,28 +102,31 @@ public class Main {
                             System.out.println(); // new line at the end
                         }
                         if (numbers.length == 2) {// 2 parameters
-                            if (!isNaturalor0(numbers[1])) {
+                            if (Functions.notNatural0(numbers[1])) {
                                 System.out.println("The second parameter should be a natural number.");
                                 System.out.println();
                             } else {
                                 for (int i = 0; i < numbers[1]; i++) {
                                     System.out.print("             " + (numbers[0] + i) + " is");
-                                    if (isBuzz(number + i)) {
+                                    if (Functions.isBuzz(number + i)) {
                                         System.out.print(" buzz,");
                                     }
-                                    if (isDuck(number + i)) {
+                                    if (Functions.isDuck(number + i)) {
                                         System.out.print(" duck,");
                                     }
-                                    if (isGapful(number + i)) {
+                                    if (Functions.isGapful(number + i)) {
                                         System.out.print(" gapful,");
                                     }
-                                    if (isPalindromic(number + i)) {
+                                    if (Functions.isSpy(number + i)) {
+                                        System.out.print(" gapful,");
+                                    }
+                                    if (Functions.isPalindromic(number + i)) {
                                         System.out.print(" palindromic,");
                                     }
-                                    if (isEven(number + i)) {
+                                    if (Functions.isEven(number + i)) {
                                         System.out.println(" even");
                                     }
-                                    if (!isEven(number + i)) {
+                                    if (!Functions.isEven(number + i)) {
                                         System.out.println(" odd");
                                     }
                                 }
@@ -162,61 +172,4 @@ public class Main {
 
  */ //STAGE 1/8
     }
-
-    private static boolean isGapful(long number) {
-        boolean flag = false;
-        StringBuilder numberText = new StringBuilder(number + "");
-        if (numberText.length() >= 3) {
-            if (number % (Long.parseLong(numberText.charAt(0) +"") * 10  + Long.parseLong(numberText.charAt(numberText.length() - 1) +"")) == 0) {
-                flag = true;
-            }
-        }
-        return flag;
-    }
-
-    private static boolean isPalindromic(long number) {
-        boolean isPalindromicNumber = true;
-        String[] arrayOfNumber = ("" + number).split("");
-        for (int i = 0, k = arrayOfNumber.length - 1; i < arrayOfNumber.length / 2; i++, k--) {
-            if (!arrayOfNumber[i].equals(arrayOfNumber[k])) {
-                isPalindromicNumber = false;
-                break;
-            }
-
-        }
-        return isPalindromicNumber;
-    }
-
-    private static boolean isDuck(long number) {
-        boolean isDuckNumber = false;
-        StringBuilder numberInText = new StringBuilder();
-        numberInText.append(number);
-        for (int i = 1; i < numberInText.length(); i++) {
-            if (numberInText.charAt(i) == '0') {
-                isDuckNumber = true;
-                break;
-            }
-        }
-        return isDuckNumber;
-    }
-
-    private static boolean isBuzz(long number) {
-        boolean isBuzzNumber = false;
-        if (number % 7 == 0) {
-            isBuzzNumber = true;
-        }
-        if (number % 10 == 7) {
-            isBuzzNumber = true;
-        }
-        return isBuzzNumber;
-    } // check the number is Buzz number
-
-
-    private static boolean isEven(long number) {
-        return number % 2 == 0;
-    } // check is odd or even
-
-    private static boolean isNaturalor0(long number) {
-        return number > 0;
-    } // check is Natural
 }
