@@ -1,6 +1,5 @@
 package numbers;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -39,62 +38,62 @@ public class Main {
             String line = scanner.nextLine();
 
             if (line.length() > 0) { // no argument in line from user
-                long[] numbers = Arrays.stream(line.split(" ")).mapToLong(Long::parseLong).toArray();
+                String[] numbers = line.split(" ");
 
 
-                    long number = numbers[0];// STAGE 3/8 scanner.nextLong();
-                    System.out.println(); // new line after enter the number
-                    if (number == 0) {
+                    long number1 = Long.parseLong(numbers[0]);// STAGE 3/8 scanner.nextLong();
+                    System.out.println(); // new line after enter the number1
+                    if (number1 == 0) {
                         System.out.println("Goodbye!");
                         System.exit(0);
                     } // exit
 
-                    if (Functions.notNatural0(number)) {
-                        System.out.println("The first parameter should be a natural number or zero.");
+                    if (Functions.notNatural0(number1)) {
+                        System.out.println("The first parameter should be a natural number1 or zero.");
                         System.out.println();
-                        // STAGE2/8System.out.println("This number is not natural!");
+                        // STAGE2/8System.out.println("This number1 is not natural!");
                         // STAGE2/8System.exit(0);
-                    } //check number is not natural and restart menu
+                    } //check number1 is not natural and restart menu
                     else {
                         if (numbers.length == 1) { //only 1 parameter
-                            System.out.println("Properties of " + number);
+                            System.out.println("Properties of " + number1);
 
-                            if (Functions.isEven(number)) { // check is even
+                            if (Functions.isEven(number1)) { // check is even
                                 System.out.println("        even: true");
                             } else {
                                 System.out.println("        even: false");
                             }
-                            if (!Functions.isEven(number)) { // check is odd
+                            if (!Functions.isEven(number1)) { // check is odd
                                 System.out.println("         odd: true");
                             } else {
                                 System.out.println("         odd: false");
                             }
 
-                            if (Functions.isGapful(number)) { // check is gapful
+                            if (Functions.isGapful(number1)) { // check is gapful
                                 System.out.println("      gapful: true");
                             } else {
                                 System.out.println("      gapful: false");
                             }
 
-                            if (Functions.isSpy(number)) { // check is gapful
+                            if (Functions.isSpy(number1)) { // check is gapful
                                 System.out.println("         spy: true");
                             } else {
                                 System.out.println("         spy: false");
                             }
 
-                            if (Functions.isBuzz(number)) { // check isBuzz Number
+                            if (Functions.isBuzz(number1)) { // check isBuzz Number
                                 System.out.println("        buzz: true");
                             } else {
                                 System.out.println("        buzz: false");
                             }
 
-                            if (Functions.isDuck(number)) { // check isDuck number
+                            if (Functions.isDuck(number1)) { // check isDuck number1
                                 System.out.println("        duck: true");
                             } else {
                                 System.out.println("        duck: false");
                             }
 
-                            if (Functions.isPalindromic(number)) { // check is Plindromic
+                            if (Functions.isPalindromic(number1)) { // check is Plindromic
                                 System.out.println(" palindromic: true");
                             } else {
                                 System.out.println(" palindromic: false");
@@ -102,31 +101,32 @@ public class Main {
                             System.out.println(); // new line at the end
                         }
                         if (numbers.length == 2) {// 2 parameters
-                            if (Functions.notNatural0(numbers[1])) {
-                                System.out.println("The second parameter should be a natural number.");
+                            long number2 = Long.parseLong(numbers[1]);
+                            if (Functions.notNatural0(number2)) {
+                                System.out.println("The second parameter should be a natural number1.");
                                 System.out.println();
                             } else {
-                                for (int i = 0; i < numbers[1]; i++) {
+                                for (int i = 0; i < number2; i++) {
                                     System.out.print("             " + (numbers[0] + i) + " is");
-                                    if (Functions.isBuzz(number + i)) {
+                                    if (Functions.isBuzz(number1 + i)) {
                                         System.out.print(" buzz,");
                                     }
-                                    if (Functions.isDuck(number + i)) {
+                                    if (Functions.isDuck(number1 + i)) {
                                         System.out.print(" duck,");
                                     }
-                                    if (Functions.isGapful(number + i)) {
+                                    if (Functions.isGapful(number1 + i)) {
                                         System.out.print(" gapful,");
                                     }
-                                    if (Functions.isSpy(number + i)) {
+                                    if (Functions.isSpy(number1 + i)) {
                                         System.out.print(" gapful,");
                                     }
-                                    if (Functions.isPalindromic(number + i)) {
+                                    if (Functions.isPalindromic(number1 + i)) {
                                         System.out.print(" palindromic,");
                                     }
-                                    if (Functions.isEven(number + i)) {
+                                    if (Functions.isEven(number1 + i)) {
                                         System.out.println(" even");
                                     }
-                                    if (!Functions.isEven(number + i)) {
+                                    if (!Functions.isEven(number1 + i)) {
                                         System.out.println(" odd");
                                     }
                                 }
